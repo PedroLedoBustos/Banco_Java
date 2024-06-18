@@ -72,7 +72,7 @@ public class Cliente {
             Float cantidadIngreso = Utilidades.leerFloat("Introduce la cantidad que quieres ingresar: ");
             cuenta.agregarDinero(cantidadIngreso);
             System.out.println("La cuenta con número: " + cuenta.getNumeroCuenta() + " ahora tiene: "
-                    + cuenta.getCantidad() + "€");
+                    + cuenta.getCantidad());
         }
     }
 
@@ -83,7 +83,7 @@ public class Cliente {
         if (cuenta == null) {
             System.out.println("Lo siento esta cuenta no esta dada de alta");
         } else {
-            Float cantidadSacar = Utilidades.leerFloat("Introduce la cantidad que quieres ingresar: ");
+            Float cantidadSacar = Utilidades.leerFloat("Introduce la cantidad que quieres sacar: ");
             cuenta.sacarDinero(cantidadSacar);
         }
     }
@@ -96,7 +96,7 @@ public class Cliente {
             System.out.println("Lo siento esta cuenta no esta dada de alta");
         } else {
             System.out.println(
-                    "La cuenta con número: " + cuenta.getNumeroCuenta() + " tiene: " + cuenta.getCantidad() + "€");
+                    "La cuenta con número: " + cuenta.getNumeroCuenta() + " tiene: " + cuenta.getCantidad());
         }
     }
 
@@ -106,7 +106,7 @@ public class Cliente {
             cantidadTotal += cuenta.getCantidad();
         }
 
-        System.out.println("CANTIDAD TOTAL = " + cantidadTotal + "€");
+        System.out.println("CANTIDAD TOTAL = " + cantidadTotal);
     }
 
     public Float cantidadTotal() {

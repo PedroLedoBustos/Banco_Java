@@ -29,7 +29,7 @@ public class Cuenta {
         } else {
             cantidad -= cantidadSacar;
             System.out.println("La cuenta con número: " + numeroCuenta + " ahora tiene: "
-                    + cantidad + "€");
+                    + cantidad);
         }
     }
 
