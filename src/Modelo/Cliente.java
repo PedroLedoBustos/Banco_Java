@@ -29,20 +29,84 @@ public class Cliente {
         return dni;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        cuentas.add(cuenta);
-    }
-
-    public Cuenta comprobarCuenta(Cuenta Cuenta) {
+    private Cuenta comprobarCuenta(Integer numeroCuenta) {
         for (Cuenta cuentaDentro : cuentas) {
-            if (cuentaDentro.getNumeroCuenta().equals(Cuenta.getNumeroCuenta()))
+            if (cuentaDentro.getNumeroCuenta().equals(numeroCuenta))
                 return cuentaDentro;
         }
         return null;
     }
 
-    public void eliminarCuenta(Cuenta cuenta) {
-        cuentas.remove(cuenta);
+    public void altaCuenta() {
+        Integer numeroCuenta = Utilidades.leerInteger("Introduce el número de cuenta: ");
+        Cuenta cuenta = comprobarCuenta(numeroCuenta);
+
+        if (cuenta != null) {
+            System.out.println("Lo siento esta cuenta ya esta dada de alta");
+        } else {
+            Cuenta nuevaCuenta = new Cuenta(numeroCuenta, this);
+            cuentas.add(nuevaCuenta);
+            System.out.println("La cuenta con número: " + numeroCuenta + " ha sido dada de alta");
+        }
+    }
+
+    public void bajaCuenta() {
+        Integer numeroCuenta = Utilidades.leerInteger("Introduce el número de cuenta: ");
+        Cuenta cuenta = comprobarCuenta(numeroCuenta);
+
+        if (cuenta == null) {
+            System.out.println("Lo siento esta cuenta no esta dada de alta");
+        } else {
+            cuentas.remove(cuenta);
+            System.out.println("La cuenta con número: " + cuenta.getNumeroCuenta() + " ha sido dada de baja");
+        }
+    }
+
+    public void ingreso() {
+        Integer numeroCuenta = Utilidades.leerInteger("Introduce el número de cuenta: ");
+        Cuenta cuenta = comprobarCuenta(numeroCuenta);
+
+        if (cuenta == null) {
+            System.out.println("Lo siento esta cuenta no esta dada de alta");
+        } else {
+            Float cantidadIngreso = Utilidades.leerFloat("Introduce la cantidad que quieres ingresar: ");
+            cuenta.agregarDinero(cantidadIngreso);
+            System.out.println("La cuenta con número: " + cuenta.getNumeroCuenta() + " ahora tiene: "
+                    + cuenta.getCantidad() + "€");
+        }
+    }
+
+    public void sacar() {
+        Integer numeroCuenta = Utilidades.leerInteger("Introduce el número de cuenta: ");
+        Cuenta cuenta = comprobarCuenta(numeroCuenta);
+
+        if (cuenta == null) {
+            System.out.println("Lo siento esta cuenta no esta dada de alta");
+        } else {
+            Float cantidadSacar = Utilidades.leerFloat("Introduce la cantidad que quieres ingresar: ");
+            cuenta.sacarDinero(cantidadSacar);
+        }
+    }
+
+    public void verDineroCuenta() {
+        Integer numeroCuenta = Utilidades.leerInteger("Introduce el número de cuenta: ");
+        Cuenta cuenta = comprobarCuenta(numeroCuenta);
+
+        if (cuenta == null) {
+            System.out.println("Lo siento esta cuenta no esta dada de alta");
+        } else {
+            System.out.println(
+                    "La cuenta con número: " + cuenta.getNumeroCuenta() + " tiene: " + cuenta.getCantidad() + "€");
+        }
+    }
+
+    public void verDineroTotal() {
+        float cantidadTotal = 0;
+        for (Cuenta cuenta : cuentas) {
+            cantidadTotal += cuenta.getCantidad();
+        }
+
+        System.out.println("CANTIDAD TOTAL = " + cantidadTotal + "€");
     }
 
     public Float cantidadTotal() {
@@ -70,22 +134,22 @@ public class Cliente {
 
             switch (opcion) {
                 case "1":
-                    // altaCuenta()
+                    altaCuenta();
                     break;
                 case "2":
-                    // bajaCuenta()
+                    bajaCuenta();
                     break;
                 case "3":
-                    // ingreso()
+                    ingreso();
                     break;
                 case "4":
-                    // sacar()
+                    sacar();
                     break;
                 case "5":
-                    // verDineroCuenta()
+                    verDineroCuenta();
                     break;
                 case "6":
-                    // verDineroTotal
+                    verDineroTotal();
                     break;
                 case "9":
                     System.out.println("Saliendo...");

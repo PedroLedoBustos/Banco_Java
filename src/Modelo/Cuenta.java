@@ -1,7 +1,5 @@
 package Modelo;
 
-import Utilidades.Utilidades;
-
 public class Cuenta {
     private Integer numeroCuenta;
     private Cliente cliente;
@@ -30,7 +28,8 @@ public class Cuenta {
             System.out.println("Lo siento no tienes fondos suficientes");
         } else {
             cantidad -= cantidadSacar;
-            System.out.println("Dinero sacado correctamente");
+            System.out.println("La cuenta con número: " + numeroCuenta + " ahora tiene: "
+                    + cantidad + "€");
         }
     }
 
